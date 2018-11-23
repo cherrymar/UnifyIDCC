@@ -2,20 +2,16 @@ import json
 import math
 import ipinfo
 import sys # used for maximum integer constant
-# Imported this library so that I can use the distance formula for lat/long
-from haversine import haversine
+from haversine import haversine # Imported this library so that I can use the distance formula for lat/long
 
-
-# Global Variables
+# CONSTANTS to access ipinfo.io API
 access_token = 'a501254463d445'
 handler = ipinfo.getHandler(access_token)
-#
-# class Score:
-#
-#     def __init__( self, ip_address, type, score, ):
 
-
-# CONSTANT- store of current IP addresses
+# CONSTANT- store of current IP addresses as a dictionary
+# key- IP address
+# value- relevant information stored as a tuple
+# gets rid of repeated IP addresses
 locations = {}
 with open("IP.txt") as f:
     content = f.read().splitlines()
@@ -27,6 +23,7 @@ with open("IP.txt") as f:
         latitude = details.latitude
         longitude = details.longitude
 
+        # only stores IP address if it's unique
         if locations.get(ip_address) == None:
             locations[ip_address] = (ip_address, type, latitude, longitude)
 
@@ -56,13 +53,13 @@ def getScore( ipAddress ):
         return "Score: " + str( closest_login[2] )
 
 
-# Check as many IP addresses as you want
+# Continually checks new IP addresses until you end the program
 while( True ):
     IP = input("What IP address do you wish to check?" )
-    # while( handler.getDetails(IP) == None ):
-    #     IP = input("Sorry, invalid IP, please input another: " )
-    print( getScore(IP) )
-
+    try:
+        print( getScore(IP) )
+    except Exception:
+        print("Sorry, that IP address is invalid.")
 
 
 

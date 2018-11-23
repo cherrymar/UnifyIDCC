@@ -1,9 +1,5 @@
 README
 
-Assumptions I made:
-FRAUD and LOGIN locations do not overlap. If an IP address is marked FRAUD, then it can't be marked LOGIN.
-Assume that all IP Addresses inputed are valid IP addresses.
-
 
 What circumstances may lead to false positives or false negatives when using solely this score?
   If a person forgets their password, they may register their IP address as a fraudulent. If someone
@@ -21,6 +17,10 @@ Further Considerations:
   overlap being FRAUD and LOGIN? If the person successfully logs in at some point in time and then someone
   else fails to hack into their account with the same IP address?
 
+  Assumptions I made:
+  FRAUD and LOGIN locations do not overlap. If an IP address is marked FRAUD, then it can't be marked LOGIN.
 
-in which you describe issues you had while working on this challenge, as well ideas
-to make this better in the future.
+
+To use this program, run the input.py file. Then you will be prompted to input an IP address. Once you have
+entered an IP address, press enter and a score will be printed. The program will continue running until it is
+terminated. To edit the given IP addresses file, change IP.txt. The formal is "type(FRAUD/LOGIN) IP_ADDRESS"
